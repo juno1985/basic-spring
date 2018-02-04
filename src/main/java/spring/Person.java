@@ -18,7 +18,7 @@ public class Person {
 	}
 	
 	//依赖注入后调用的方法
-	public void init(){
-		System.out.println("Person实例化之后执行该方法!");
+	public void destroy(){
+		System.out.println("Person销毁该实例前执行的方法!");
 	}
 }
