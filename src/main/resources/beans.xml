@@ -7,7 +7,8 @@
 	<bean id="cheeseBread" class="inter.CheeseBread"></bean>
 	
 	<bean id="male" class="inter.Male">
-		<property name="bread" ref="cheeseBread"></property>
+	<!-- 每个constructor-arg 代表构造器一个参数-->
+		<constructor-arg ref="cheeseBread" />
 	</bean>
 	
 </beans>
