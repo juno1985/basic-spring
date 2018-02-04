@@ -1,7 +1,11 @@
 package softcits.spring.demo;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+@Configuration
+@EnableAspectJAutoProxy
 public class SpringTest {
 
 	public static void main(String[] args) {

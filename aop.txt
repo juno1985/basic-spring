@@ -6,7 +6,8 @@
 	    <version>1.8.13</version>
 	</dependency>
 
-2.使用xml的方式，需要增加<aop:aspectj-autoproxy/>，并引入aop schema
+以下2.1和2.2任选其一
+-2.1使用xml的方式，需要增加<aop:aspectj-autoproxy/>，并引入aop schema
 	<?xml version="1.0" encoding="UTF-8"?>
 	<beans xmlns="http://www.springframework.org/schema/beans"
 	    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -15,4 +16,20 @@
 	        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"> <!-- bean definitions here -->
 	
 	</beans>
+
+-2.2在主运行类使用来代替bean.xml中的配置
+	@Configuration
+	@EnableAspectJAutoProxy
+	
 3.创建代理类,并使用@Aspect
+4.创建pointcut要执行的方法
+	@Before("execution(* softcits.spring.demo.Bread.eaten())")
+	public void inforBefore(){
+		System.out.println("Bread starts being eaten ----> " + new Date());
+	}
+	
+	@After("execution(* softcits.spring.demo.Bread.eaten())")
+	public void inforAfter(){
+		System.out.println("Bread eaten completed  ----> " + new Date());
+	}
+	
