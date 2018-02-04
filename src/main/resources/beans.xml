@@ -3,15 +3,25 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans.xsd">
-		<!-- spring使用反射方式调用无参数的构造器 -->
-	<bean id="bread" class="spring.Bread"></bean>
-	<!-- 使用init-method指定该Bean所有属性注入完后,自动执行init方法 -->
-	<bean id="person" class="spring.Person" destroy-method="destroy" scope="singleton">
-		<!-- 通过ref的指定将person为bread的变量赋值，spring会以反射方式调用setter方法 -->
-		<property name="bread" ref="bread"></property>
+	<!-- 下面配置驱动Spring调用BeingFactory的静态getBeing()方法来创建Bean
+	该bean元素包含的constructor-arg元素用于为静态工厂方法指定参数，
+	因此这段配置会驱动Spring以反射方式来执行如下代码：
+	dog = app.factory.BeingFactory.getBeing("dog"); -->
+	<bean id="dog" class="app.factory.BeingFactory"
+		factory-method="getBeing">
+		<!-- 配置静态工厂方法的参数 -->
+		<constructor-arg value="dog"/>
+		<!-- 驱动Spring以"我是狗"为参数来执行dog的setMsg()方法 -->
+		<property name="msg" value="我是狗"/>
 	</bean>
-	
-	<!-- 设置id为date的bean,在程序中可以生成JDK java.util.Date的实例 -->
-	<bean id="date" class="java.util.Date"></bean>
+	<!--  下面配置会驱动Spring以反射方式来执行如下代码：
+	dog = app.factory.BeingFactory.getBeing("cat"); -->
+	<bean id="cat" class="app.factory.BeingFactory"
+		factory-method="getBeing">
+		<!-- 配置静态工厂方法的参数 -->
+		<constructor-arg value="cat"/>
+		<!-- 驱动Spring以"我是猫"为参数来执行dog的setMsg()方法 -->
+		<property name="msg" value="我是猫"/>
+	</bean>
 	
 </beans>
