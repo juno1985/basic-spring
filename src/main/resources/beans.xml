@@ -3,12 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<!-- use id"bread" to generate Bread Object -->
-	<bean id="cheeseBread" class="inter.CheeseBread"></bean>
+
+	<bean id="inst1" class="spring.InstanceTest" scope="singleton"></bean>
 	
-	<bean id="male" class="inter.Male">
-	<!-- 每个constructor-arg 代表构造器一个参数-->
-		<constructor-arg ref="cheeseBread" />
-	</bean>
+	<bean id="inst2" class="spring.InstanceTest" scope="prototype"></bean>
 	
 </beans>
