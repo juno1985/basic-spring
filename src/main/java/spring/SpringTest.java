@@ -3,13 +3,14 @@ package spring;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class Test {
+public class SpringTest {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
+		//创建Spring容器,从类加载路径下搜索beans.xml
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
 		
-		System.out.println(ctx.getBean("inst1")==ctx.getBean("inst1"));
-		System.out.println(ctx.getBean("inst2")==ctx.getBean("inst2"));
+		Person p = ctx.getBean("person", Person.class);
+//		p.eatBread();
 	}
 
 }
